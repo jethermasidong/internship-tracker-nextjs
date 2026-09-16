@@ -26,42 +26,32 @@ export default function LoginPage() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
       >
-      <div className="min-h-screen bg-[#daecf3] flex items-center justify-center p-6">
+      <div className="min-h-screen bg-white flex items-center justify-center p-6">
 
       <Header />
         
-      <div className="bg-white w-full max-w-4xl rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2 h-[60vh]">
-        
-        <div className="bg-[#2d5671] p-14 flex flex-col justify-center items-center text-white">
+      <div className="bg-white w-fit rounded-3xl overflow-hidden flex flex-row items-center justify-center h-[60vh]">
+         <div className="p-12 lg:p-16 flex flex-col justify-center items-center">
           <img
-            src="/loginphoto.png"
-            alt="Login Photo"
-            className="w-80 h-80"
-          />    
-          <h2 className="text-xl font-semibold mb-2">Track your internship properly</h2>
-          <p className="text-blue-100 text-center mb-8 text-sm">
-            Manage your internships and stay organized with our all-in-one platform.
-          </p>
-        </div>
-
-         <div className="p-12 lg:p-16 flex flex-col justify-center">
-          <div className="mb-10">
-            <img
               src="/logo.png"
               alt="Logo"
-              className="w-16 h-6 mb-5"
+              className="w-35 h-5 mb-5"
             />  
-            <h1 className="text-3xl font-bold text-gray-900 mb-1">Welcome Back!</h1>
-            <p className="text-gray-500">Please enter log in details below</p>
+          <h1 className="text-4xl font-extrabold mb-2">Welcome back</h1>
+          <div className="items-center text-center mb-8">
+            <a className="text-sm text-center">Not registered yet?</a>
+            <Link href="/pages/signup">
+              <button className="text-sm cursor-pointer ml-1 font-semibold hover:text-[#2d5671]">Create an account</button>
+            </Link>
           </div>
 
-          <form className="space-y-6">
+          <form className="space-y-6 w-full max-w-150 mx-auto">
             <div>
               <label className="block text-sm font-semibold mb-2">Email Address<span className="text-red-500">*</span></label>
               <input 
                 name="email"
                 type="email" 
-                className="w-full p-2 rounded-xl border border-gray-200 focus:border-[#2d5671] outline-none" 
+                className="w-full p-2 pr-40 rounded-xl border border-gray-200 focus:border-[#2d5671] outline-none" 
                 placeholder="name@example.com"
                 required
               />
@@ -80,16 +70,24 @@ export default function LoginPage() {
             <button type="submit" className="w-full bg-[#2d5671] text-white py-2 rounded-xl font-bold hover:bg-[white] hover:text-black border border-black transition-all">
               Sign In
             </button>
-            <div className="justify-center">
-              <a className="text-sm ml-13">Not registered yet?</a>
+            <div className="items-center text-center">
+              <a className="text-sm text-center">Not registered yet?</a>
               <Link href="/pages/signup">
                 <button className="text-sm cursor-pointer ml-1 font-semibold hover:text-[#2d5671]">Create an account</button>
               </Link>
             </div>
+            <p className="text-center">or</p>
+
+            <button 
+              type="submit" 
+              onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+              className="w-full text-black py-2 rounded-xl font-bold hover:bg-black hover:text-white border border-black transition-all">
+              Sign in with Google
+            </button>
           </form>
         </div>
-        </div>
       </div>
+    </div>
   </motion.div>
   );
 }

@@ -3,45 +3,45 @@ import Link from 'next/link';
 
 export default function Page() {
   return (
-    <div className="min-h-screen flex bg-[#daecf3]"> 
+    <div className="min-h-screen flex flex-col bg-white bg-[linear-gradient(to_right,#f3f4f6_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-size-[2rem_2rem]"> 
 
       <Header />
 
-      <div className="w-1/2 min-h-[65vh] mt-28 mb-10 ml-10 flex flex-col justify-center px-20 bg-white/50 rounded-tr-[30vw] rounded-br-[80px] shadow-sm z-10">
-        
-        <span className="flex items-center gap-2 border mt-2 mb-5 sm:mt-0 rounded-full py-2 px-5 w-fit mx-auto sm:mx-0 font-semibold text-sm">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#89bfd7] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#30688a]"></span>
-          </span>
-          Students
-        </span>
+      <div className="flex min-h-[80vh] flex-col items-center justify-center w-full mt-30">
+        <div className="flex flex-col justify-center items-center px-20">
+          <h1 className="text-5xl lg:text-6xl font-extrabold text-gray-900 text-center mb-5 italic">
+            <span className="text-[#0077B3]">Log</span> hours.{' '}
+            <span className="text-[#0077B3]">Track</span> time. <br />{' '}
+            <span className="text-[#0077B3]">Ace</span> your internship.
+          </h1>
+          <p className="text-gray-500 text-md lg:text-lg mb-10 max-w-md text-center">
+            Easily log your daily hours and monitor your overall progress in one place. Stay organized from day one and make every moment of your internship count.
+          </p>
+          
+            <div className="flex flex-row gap-3">
+              <Link href="/pages/login">
+                <button className="bg-[#0077B3] hover:bg-white lg:text-md text-sm border border-black/50 cursor-pointer hover:text-black transition-colors px-10 py-2 rounded-md w-fit font-light text-white">
+                  Get Started &rarr;
+                </button>
+              </Link>
+              <button className="hover:bg-white border border-black/50 lg:text-md text-sm cursor-pointer hover:text-black transition-colors px-10 py-2 rounded-md w-fit font-light text-black">
+                Contact Us
+              </button>
+            </div>
+        </div>
 
-        <h1 className="text-6xl font-bold text-gray-900 leading-tight">
-          Track your internships
-        </h1>
-        <h1 className="text-6xl font-bold mb-6 text-gray-900 leading-tight">
-          Manage progress, and stay organized.
-        </h1>
-        
-        <p className="text-gray-500 text-xl mb-10 max-w-md">
-          Online Internship Tracker that will help you stay on top of your applications.
-        </p>
-        <Link href="/pages/login">
-          <button className="bg-[#2d5671] hover:bg-white border border-black cursor-pointer hover:text-black transition-colors px-10 py-3 rounded-xl w-fit font-semibold text-white">
-            Get Started
-          </button>
-        </Link>
+        <div className="mt-20 mb-20 flex flex-col lg:flex-row lg:mb-0 items-center justify-center gap-6 relative">
+          <div className="w-56 h-64">
+            <img src="one.png" alt="One" className="w-full h-full object-cover" />
+          </div>
+          <div className="w-56 h-64">
+            <img src="two.png" alt="Two" className="w-full h-full object-cover" />
+          </div>
+          <div className="w-56 h-64">
+            <img src="three.png" alt="Three" className="w-full h-full object-cover" />
+          </div>
+        </div>
       </div>
-
-      <div className="w-1/2 flex items-center justify-center relative">
-        <img
-          src="/illustration.svg"
-          alt="Welcome"
-          className="w-3/4 relative z-20"
-        />
-      </div>
-
     </div>
   );
 }
