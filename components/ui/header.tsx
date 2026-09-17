@@ -7,11 +7,11 @@ export default function Header() {
       <nav className="w-full max-w-8xl flex items-center justify-between px-6 py-3">
         
         <div className="flex items-center gap-2">
-            <img
-                src="/logo.png"
-                alt="Logo"
-                className="w-35 h-5"
-                />
+          <img
+            src="/logo.png"
+            alt="Logo"
+            className="w-35 h-5"
+          />
         </div>
 
         <div className="flex items-center gap-4">

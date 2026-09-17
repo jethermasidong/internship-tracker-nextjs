@@ -4,13 +4,33 @@ import Link from 'next/link';
 import {signIn} from "next-auth/react";
 import Header from "@/components/ui/header";
 import { motion } from "framer-motion";
+import { useState } from 'react';
 
 export default function LoginPage() {
-  async function handleLogin(e: any) {
+
+  const [error, setError] = useState("");
+
+  async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const form = new FormData(e.target);
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
 
+    setError("");
+
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (res?.error) {
+      setError("Invalid email or password!");
+    } else {
+      window.location.href = "/dashboard";
+    }
+ 
     await signIn("credentials", {
       email: form.get("email"),
       password: form.get("password"),
@@ -45,7 +65,9 @@ export default function LoginPage() {
             </Link>
           </div>
 
-          <form className="space-y-6 w-full max-w-150 mx-auto">
+          <form 
+            onSubmit={handleLogin}
+            className="space-y-6 w-full max-w-150 mx-auto">
             <div>
               <label className="block text-sm font-semibold mb-2">Email Address<span className="text-red-500">*</span></label>
               <input 
@@ -70,21 +92,19 @@ export default function LoginPage() {
             <button type="submit" className="w-full bg-[#2d5671] text-white py-2 rounded-xl font-bold hover:bg-[white] hover:text-black border border-black transition-all">
               Sign In
             </button>
-            <div className="items-center text-center">
-              <a className="text-sm text-center">Not registered yet?</a>
-              <Link href="/pages/signup">
-                <button className="text-sm cursor-pointer ml-1 font-semibold hover:text-[#2d5671]">Create an account</button>
-              </Link>
-            </div>
-            <p className="text-center">or</p>
-
-            <button 
-              type="submit" 
-              onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
-              className="w-full text-black py-2 rounded-xl font-bold hover:bg-black hover:text-white border border-black transition-all">
-              Sign in with Google
-            </button>
           </form>
+          <p className="text-center my-5">or</p>
+          <button 
+            type="submit" 
+            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+            className="w-full text-black py-2 rounded-xl font-bold hover:bg-black hover:text-white border border-black transition-all flex flex-row items-center justify-center gap-2">
+            <img
+              src="/google.png"
+              alt="Logo"
+              className="w-4 h-4"
+            />  
+            <p className="font-medium">Continue with Google</p>
+          </button>
         </div>
       </div>
     </div>
